@@ -14,7 +14,7 @@ import edu.uniandes.ecos.exception.GammaException;
 public class GammaUtil {
  
     public static double f(final double val) throws GammaException{
-        if((val*2) % 2d !=0){
+        if((val*2) % 1d !=0){
             throw new GammaException();
         } 
         double rsp;

@@ -14,7 +14,9 @@ import edu.uniandes.ecos.exception.GammaException;
 public class TDistributionUtil {
     
     public static double f(final double x, final double dof) throws GammaException{
-        return ( GammaUtil.f( (dof+1d) / 2d) / ( Math.pow(dof * Math.PI, 0.5d) * GammaUtil.f(dof/2d) ) ) *
-                Math.pow( 1d + ( (x*x) / 2d) , -((dof + 1d)/2d));
+        double fu1 = ( GammaUtil.f( (dof+1d) / 2d) / ( Math.pow(dof * Math.PI, 0.5d) * GammaUtil.f(dof/2d) ) );
+        double fu2 =  Math.pow( 1d + ( (x*x) / dof) , -((dof + 1d)/2d));
+        double fu3 = fu1 * fu2;
+        return fu3;
     }
 }

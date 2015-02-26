@@ -17,7 +17,7 @@ public class SimpsonControl {
     private final double x;
     private final double dof;
     
-    private double numSeg = 10d;
+    private double numSeg = 5d; // El procedimiento siempre duplica este valor en cada ciclo
     private double pAnterior;
     private double pActual;
     
@@ -27,7 +27,14 @@ public class SimpsonControl {
     }
     
     public void operar() throws GammaException{
-        pActual =  (getW()/3d) * (TDistributionUtil.f(0, dof) + getSumaImpar() + getSumaPar() + TDistributionUtil.f(x, dof));
+        
+        pActual = 0;
+        
+        do {
+            numSeg = numSeg*2d;
+            pAnterior = pActual;
+            pActual =  (getW()/3d) * (TDistributionUtil.f(0, dof) + getSumaImpar() + getSumaPar() + TDistributionUtil.f(x, dof));
+        } while (Math.abs(pActual-pAnterior)>E);
     }
     
     public double getP(){

@@ -17,10 +17,12 @@ public class Main {
         try {
             System.out.println("Digite el valor de x: ");
             Scanner sc1 = new Scanner(System.in);
-            double x = sc1.nextDouble();
+            String xString = sc1.next();
+            double x = Double.parseDouble(xString);
             System.out.println("Digite el valor de dof: ");
             Scanner sc2 = new Scanner(System.in);
-            double dof = sc2.nextDouble();
+            String dofString = sc2.next();
+            double dof = Double.parseDouble(dofString);
             
             System.out.println("\nValores x=" + x + " dof="+dof+"\n");
             
@@ -34,7 +36,9 @@ public class Main {
 
         } catch (GammaException ex) {
             System.out.println(ex.getMessage()+"\n");
-        } 
+        } catch (NumberFormatException ex){
+            System.out.println("Error con los valores ingresados, deben estar en formato numero decimal. Se usa el punto como separador de decimales"+"\n");
+        }
         System.out.println("\nFin de la aplicacion");
         
     }
